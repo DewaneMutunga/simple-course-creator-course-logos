@@ -49,6 +49,7 @@ class SCC_Course_Logos_Settings {
 		<div class="uploader">
 			<label for="_scc_course_logo"><?php _e( 'Course Logo', 'scccl' ); ?></label>
 			<input id="logo_image_id" type="text" value="" /><a class="button" id="upload_logo" href="#">Upload Logo</a>
+			<input size="45" id="logo_image_id" type="text" value="" />
 			<div id="logo_image_holder"><!-- We will have our logo image showing here --></div>			
 			<p class="description"><?php _e( 'This is the displayed logo of your course.','scccl' ); ?></p>
 		</div>
