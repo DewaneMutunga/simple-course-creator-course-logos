@@ -22,12 +22,12 @@ class SCC_Course_Logos_Settings {
 	public function __construct() {
 
 		// add custom meta fields to new term
-		add_action( 'course_add_form_fields', array( $this, 'course_meta_title' ), 20, 2 );
-		add_action( 'course_edit_form_fields', array( $this, 'edit_course_meta_title' ), 20, 2 );
+		add_action( 'course_add_form_fields', array( $this, 'course_meta_logo' ), 20, 2 );
+		add_action( 'course_edit_form_fields', array( $this, 'edit_course_meta_logo' ), 20, 2 );
 
 		// save the term custom meta field inputs
-		add_action( 'edited_course', array( $this, 'save_course_meta_title' ), 20, 2 );  
-		add_action( 'create_course', array( $this, 'save_course_meta_title' ), 20, 2 );
+		add_action( 'edited_course', array( $this, 'save_course_meta_logo' ), 20, 2 );  
+		add_action( 'create_course', array( $this, 'save_course_meta_logo' ), 20, 2 );
 		
 		// load plugin styles and scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'course_logos_enqueue_script' ) );
@@ -40,12 +40,12 @@ class SCC_Course_Logos_Settings {
 	 * Under the "Posts" dashboard menu, "Courses" is a submenu page
 	 * used to create new Courses. During the creation process, which
 	 * is exactly the same as creating a new category or tag, a new
-	 * field is available for adding the "Post Listing Title."
+	 * field is available for adding the "Course Logo."
 	 *
-	 * This title appears on the actual posts assigned to an article.
-	 * It is the title for the container holding the post listing.
+	 * This image appears on the actual posts assigned to an article.
+	 * It is the logo for the container holding the course.
 	 */
-	public function course_meta_title() { 
+	public function course_meta_logo() { 
 		// this will add the custom meta field to the add new term page
 	?>
 		<div class="form-field">
@@ -59,14 +59,14 @@ class SCC_Course_Logos_Settings {
 
 
 	/**
-	 * add title field for editing an existing course
+	 * add course logo field for editing an existing course
 	 *
-	 * Now that the "Post Listing Title" field is in place, users need 
+	 * Now that the "Course Logo" field is in place, users need 
 	 * to be able to edit it on the term edit screen. This method adds
 	 * the form field to the term edit screen and populates it with 
-	 * the saved title, if it exists.
+	 * the saved course logo, if it exists.
 	 */
-	public function edit_course_meta_title( $term ) {
+	public function edit_course_meta_logo( $term ) {
  
 		// put the term ID into a variable
 		$course_id = $term->term_id;
@@ -89,14 +89,14 @@ class SCC_Course_Logos_Settings {
 
 
 	/**
-	 * save the course title
+	 * save the course logo
 	 *
 	 * From both the two above methods, save any edits made to
-	 * the "Post Listing Title" field.
+	 * the "Course Logo" field.
 	 *
-	 * @used_by course_meta_title() and edit_course_meta_title()
+	 * @used_by course_meta_logo() and edit_course_meta_logo()
 	 */
-	public function save_course_meta_title( $term_id ) {
+	public function save_course_meta_logo( $term_id ) {
 		if ( isset( $_POST['term_meta'] ) ) {
 			$course_id = $term_id;
 			$term_meta = get_option( "taxonomy_$course_id" );
