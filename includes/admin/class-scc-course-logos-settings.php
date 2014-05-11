@@ -49,8 +49,8 @@ class SCC_Course_Logos_Settings {
 		// this will add the custom meta field to the add new term page
 	?>
 		<div class="form-field">
-			<label for="logo_image_id"><?php _e( 'Course Logo', 'scccl' ); ?></label>
-			<input name ="logo_image_id" id="logo_image_id" type="text" value="" />
+			<label for="term_meta[logo_image_id]"><?php _e( 'Course Logo', 'scccl' ); ?></label>
+			<input name="term_meta[logo_image_id]" id="term_meta[logo_image_id]" type="text" value="" />
 			<div><a class="button" id="upload_logo" href="#">Upload Logo</a></div>
 			<div id="logo_image_holder"><!-- We will have our logo image showing here --></div>			
 			<p class="description"><?php _e( 'This is the displayed logo of your course.','scccl' ); ?></p>
@@ -76,10 +76,10 @@ class SCC_Course_Logos_Settings {
 		?>
 		<tr class="form-field">
 			<th scope="row" valign="top">
-				<label for="logo_image_id"><?php _e( 'Course Logo', 'scccl' ); ?></label>
+				<label for="term_meta[logo_image_id]"><?php _e( 'Course Logo', 'scccl' ); ?></label>
 			</th>
 			<td>
-				<input name="logo_image_id" id="logo_image_id" type="text" value="<?php echo esc_attr( $term_meta['logo_image_id'] ) ? esc_attr( $term_meta['logo_image_id'] ) : ''; ?>" />
+				<input name="term_meta[logo_image_id]" id="term_meta[logo_image_id]" type="text" value="<?php echo esc_attr( $term_meta['logo_image_id'] ) ? esc_attr( $term_meta['logo_image_id'] ) : ''; ?>" />
 				<div><a class="button" id="upload_logo" href="#">Upload Logo</a></div>
 				<div id="logo_image_holder"><!-- We will have our logo image showing here --></div>	
 				<p class="description"><?php _e( 'This is the displayed logo of your course.','scccl' ); ?></p>
