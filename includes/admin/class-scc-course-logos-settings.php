@@ -22,12 +22,12 @@ class SCC_Course_Logos_Settings {
 	public function __construct() {
 
 		// add custom meta fields to new term
-		add_action( 'course_add_form_fields', array( $this, 'course_meta_title' ), 10, 2 );
-		add_action( 'course_edit_form_fields', array( $this, 'edit_course_meta_title' ), 10, 2 );
+		add_action( 'course_add_form_fields', array( $this, 'course_meta_title' ), 20, 2 );
+		add_action( 'course_edit_form_fields', array( $this, 'edit_course_meta_title' ), 20, 2 );
 
 		// save the term custom meta field inputs
-		add_action( 'edited_course', array( $this, 'save_course_meta_title' ), 10, 2 );  
-		add_action( 'create_course', array( $this, 'save_course_meta_title' ), 10, 2 );
+		add_action( 'edited_course', array( $this, 'save_course_meta_title' ), 20, 2 );  
+		add_action( 'create_course', array( $this, 'save_course_meta_title' ), 20, 2 );
 		
 		// load plugin styles and scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'course_logos_enqueue_script' ) );
@@ -45,10 +45,12 @@ class SCC_Course_Logos_Settings {
 	 * This title appears on the actual posts assigned to an article.
 	 * It is the title for the container holding the post listing.
 	 */
-	public function course_meta_title() { ?>
-		<div class="uploader">
-			<label for="_scc_course_logo"><?php _e( 'Course Logo', 'scccl' ); ?></label>
-			<input size="45" id="logo_image_id" type="text" value="" />
+	public function course_meta_title() { 
+		// this will add the custom meta field to the add new term page
+	?>
+		<div class="form-field">
+			<label for="logo_image_id"><?php _e( 'Course Logo', 'scccl' ); ?></label>
+			<input name ="logo_image_id" id="logo_image_id" type="text" value="" />
 			<div><a class="button" id="upload_logo" href="#">Upload Logo</a></div>
 			<div id="logo_image_holder"><!-- We will have our logo image showing here --></div>			
 			<p class="description"><?php _e( 'This is the displayed logo of your course.','scccl' ); ?></p>
@@ -72,12 +74,13 @@ class SCC_Course_Logos_Settings {
 		// retrieve the existing value for the course title
 		$term_meta = get_option( "taxonomy_$course_id" ); 
 		?>
-		<tr class="uploader">
+		<tr class="form-field">
 			<th scope="row" valign="top">
-				<label for="_scc_course_logo"><?php _e( 'Course Logo', 'scccl' ); ?></label>
+				<label for="logo_image_id"><?php _e( 'Course Logo', 'scccl' ); ?></label>
 			</th>
 			<td>
-				<input id="logo_image_id" type="text" value="" /><a class="button" id="upload_logo" href="#">Upload Logo</a>
+				<input name="logo_image_id" id="logo_image_id" type="text" value="<?php echo esc_attr( $term_meta['logo_image_id'] ) ? esc_attr( $term_meta['logo_image_id'] ) : ''; ?>" />
+				<div><a class="button" id="upload_logo" href="#">Upload Logo</a></div>
 				<div id="logo_image_holder"><!-- We will have our logo image showing here --></div>	
 				<p class="description"><?php _e( 'This is the displayed logo of your course.','scccl' ); ?></p>
 			</td>
